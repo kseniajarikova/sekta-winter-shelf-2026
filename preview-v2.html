@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#edf3ec">
+  <title>Что пригодится зимой · preview</title>
+  <meta name="description" content="Интерактивный зимний набор: отметь, что уже есть дома, и посмотри только нужные варианты.">
+  <style>
+    :root{
+      --ink:#183b32;--muted:#63736d;--bg:#edf3ec;--surface:#fffdf8;--line:#cfdad2;
+      --lime:#e9f39d;--lime-strong:#d7e970;--lilac:#ece9ff;--lilac-ink:#63508d;
+      --care:#eef6cf;--care-ink:#5f7138;--peach:#ffe8d8;--peach-ink:#8b5a3d;
+      --radius:24px;--shadow:0 18px 50px rgba(24,59,50,.08);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.45;padding-bottom:112px}
+    button,a{font:inherit}
+    button{color:inherit}
+    button:focus-visible,a:focus-visible{outline:3px solid #214f9a;outline-offset:3px}
+    img{max-width:100%}
+    .wrap{width:min(1160px,calc(100% - 40px));margin:auto}
+    header{min-height:118px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;border-bottom:1px solid rgba(24,59,50,.16)}
+    .preview-label{justify-self:start;font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;background:var(--lime);padding:7px 10px;border-radius:999px}
+    .logo{width:260px;line-height:0}.logo img{display:block;width:100%;height:auto}
+    .current-link{justify-self:end;font-size:13px;font-weight:800;text-underline-offset:4px}
+    .hero{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(290px,.7fr);gap:52px;align-items:center;padding:54px 0 42px}
+    .hero h1{font-size:clamp(50px,6.1vw,76px);line-height:.98;letter-spacing:-.065em;margin:0 0 20px;max-width:720px}
+    .hero h1 em{font-style:normal;color:#759888}
+    .hero-copy{font-size:19px;max-width:700px;margin:0;color:#314f46}
+    .hero-copy strong{color:var(--ink)}
+    .progress-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+    .progress-card .kicker{font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+    .progress-number{font-size:31px;font-weight:900;letter-spacing:-.045em;margin:8px 0 13px}
+    .progress-track{height:10px;background:#e5ebe5;border-radius:999px;overflow:hidden}
+    .progress-fill{height:100%;width:0;background:var(--lime-strong);border-radius:inherit;transition:width .22s ease}
+    .progress-card p{font-size:14px;color:var(--muted);margin:14px 0 0}
+    .workspace-head{display:flex;justify-content:space-between;align-items:end;gap:24px;padding:10px 0 18px}
+    .workspace-head h2{font-size:31px;line-height:1.05;letter-spacing:-.045em;margin:0 0 7px}
+    .workspace-head p{margin:0;color:var(--muted)}
+    .view-toggle{border:1px solid var(--line);background:rgba(255,255,255,.42);border-radius:14px;padding:4px;display:flex;gap:4px}
+    .view-toggle button{border:0;background:transparent;border-radius:10px;padding:9px 12px;font-size:13px;font-weight:800;cursor:pointer}
+    .view-toggle button[aria-pressed="true"]{background:var(--ink);color:white}
+    .zones{display:grid;gap:22px}
+    .zone{--zone:var(--lilac);--zone-ink:var(--lilac-ink);background:var(--zone);border:1px solid color-mix(in srgb,var(--zone-ink) 22%,transparent);border-radius:30px;padding:27px;overflow:hidden;position:relative}
+    .zone[data-zone="care"]{--zone:var(--care);--zone-ink:var(--care-ink)}
+    .zone[data-zone="home"]{--zone:var(--peach);--zone-ink:var(--peach-ink)}
+    .zone-head{display:flex;justify-content:space-between;gap:20px;align-items:start;margin-bottom:20px;position:relative;z-index:1}
+    .zone-title{display:flex;align-items:center;gap:11px}
+    .zone-index{width:31px;height:31px;display:grid;place-items:center;border-radius:50%;background:var(--zone-ink);color:white;font-size:12px;font-weight:900}
+    .zone h2{margin:0;font-size:24px;letter-spacing:-.035em}
+    .zone-head p{margin:4px 0 0;color:color-mix(in srgb,var(--zone-ink) 82%,var(--ink));font-size:14px;max-width:520px}
+    .zone-count{white-space:nowrap;font-size:12px;font-weight:900;color:var(--zone-ink);background:rgba(255,255,255,.55);border-radius:999px;padding:7px 10px}
+    .items{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;position:relative;z-index:1}
+    .zone[data-zone="home"] .items{grid-template-columns:minmax(280px,390px);justify-content:center}
+    .item{background:rgba(255,255,255,.7);border:1px solid rgba(24,59,50,.13);border-radius:22px;padding:14px;display:flex;flex-direction:column;min-width:0;transition:transform .18s,border-color .18s,background .18s}
+    .item:hover{transform:translateY(-3px);background:rgba(255,255,255,.92);border-color:rgba(24,59,50,.28)}
+    .item.is-owned{background:rgba(255,255,255,.43)}
+    .item.is-owned .item-image img{filter:grayscale(.25);opacity:.72}
+    .item-image{height:170px;display:flex;align-items:end;justify-content:center;position:relative;border-radius:16px;overflow:hidden;background:rgba(255,255,255,.38)}
+    .zone[data-zone="outside"] .item-image{background-image:radial-gradient(rgba(99,80,141,.18) 1.3px,transparent 1.3px);background-size:16px 16px}
+    .zone[data-zone="care"] .item-image::after{content:"";position:absolute;left:9px;right:9px;bottom:8px;height:8px;border-radius:3px;background:#a47d61;box-shadow:0 5px 0 -1px #614a3d}
+    .zone[data-zone="home"] .item-image{background:linear-gradient(180deg,rgba(255,255,255,.5),rgba(255,255,255,.1))}
+    .item-image img{width:100%;height:150px;object-fit:contain;object-position:center bottom;filter:drop-shadow(7px 9px 6px rgba(24,59,50,.16));position:relative;z-index:1}
+    .owned-toggle{position:absolute;right:8px;top:8px;z-index:3;border:1px solid rgba(24,59,50,.2);background:rgba(255,255,255,.92);border-radius:999px;padding:7px 9px;font-size:11px;font-weight:900;cursor:pointer;min-height:36px}
+    .owned-toggle[aria-pressed="true"]{background:var(--lime);border-color:#9eb154}
+    .item-body{display:flex;flex-direction:column;flex:1;padding:15px 3px 2px}
+    .item-tag{font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--zone-ink)}
+    .item h3{font-size:19px;line-height:1.08;letter-spacing:-.025em;margin:6px 0 8px}
+    .item p{font-size:13px;color:var(--muted);margin:0 0 15px}
+    .details{margin-top:auto;border:0;border-top:1px solid rgba(24,59,50,.14);background:transparent;padding:12px 0 2px;text-align:left;font-weight:900;font-size:13px;cursor:pointer}
+    .details:hover{text-decoration:underline;text-underline-offset:4px}
+    .empty-zone{display:none;padding:28px;border:1px dashed rgba(24,59,50,.28);border-radius:18px;text-align:center;color:var(--muted);background:rgba(255,255,255,.32)}
+    .zone.all-owned .empty-zone{display:block}.zone.all-owned .items{display:none}
+    .principle{display:grid;grid-template-columns:auto 1fr;gap:17px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:23px;margin:24px 0 0}
+    .principle-icon{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--lime);font-weight:900}
+    .principle h2{font-size:20px;margin:0 0 6px}.principle p{margin:0;color:var(--muted)}
+    footer{border-top:1px solid var(--line);padding:28px 0 34px;margin-top:34px;font-size:12px;color:var(--muted)}
+    .summary{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);width:min(920px,calc(100% - 28px));z-index:15;background:#173e34;color:white;border-radius:22px;padding:14px 16px 14px 19px;box-shadow:0 18px 55px rgba(20,48,41,.25);display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .summary-copy strong{display:block;font-size:16px}.summary-copy span{font-size:12px;color:#c8d8d1}
+    .summary-actions{display:flex;gap:8px}.summary button{border:0;border-radius:13px;padding:11px 13px;font-weight:900;font-size:13px;cursor:pointer}
+    .summary .primary{background:var(--lime);color:var(--ink)}.summary .secondary{background:rgba(255,255,255,.12);color:white}
+    .toast{position:fixed;left:50%;bottom:105px;transform:translate(-50%,20px);background:white;color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:11px 14px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.2s;z-index:30;font-size:13px;font-weight:800}
+    .toast.show{opacity:1;transform:translate(-50%,0)}
+    dialog{border:0;padding:0;margin:0 0 0 auto;width:min(590px,100%);max-width:none;height:100dvh;max-height:none;background:var(--surface);color:var(--ink);box-shadow:-24px 0 70px rgba(24,59,50,.2)}
+    dialog::backdrop{background:rgba(19,43,37,.54)}
+    .dialog-shell{min-height:100%;display:flex;flex-direction:column}
+    .dialog-top{position:sticky;top:0;z-index:4;display:flex;align-items:center;justify-content:space-between;padding:18px 24px;background:rgba(255,253,248,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+    .dialog-top span{font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+    .close{width:42px;height:42px;border:1px solid var(--line);border-radius:50%;background:white;font-size:25px;line-height:1;cursor:pointer}
+    .dialog-content{padding:24px 28px 110px}
+    .detail-visual{height:260px;background:var(--bg);border-radius:22px;display:flex;align-items:center;justify-content:center;padding:14px;margin-bottom:25px;overflow:hidden}
+    .detail-visual img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(8px 10px 7px rgba(24,59,50,.15))}
+    .dialog-content h2{font-size:42px;line-height:1;letter-spacing:-.055em;margin:0 0 12px}
+    .lead{font-size:17px;margin:0 0 23px;color:#36554b}
+    .facts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:25px}
+    .fact{border-top:1px solid var(--line);padding-top:12px}.fact strong{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px}.fact p{font-size:14px;margin:0;color:var(--muted)}
+    .variants-title{font-size:20px;margin:0 0 5px}.variants-help{font-size:13px;color:var(--muted);margin:0 0 13px}
+    .variants{display:grid;gap:8px}
+    .variant{width:100%;display:grid;grid-template-columns:auto 54px 1fr;gap:11px;align-items:center;text-align:left;border:1px solid var(--line);border-radius:16px;background:white;padding:10px 13px;cursor:pointer}
+    .variant[aria-pressed="true"]{border-color:var(--ink);box-shadow:0 0 0 2px rgba(24,59,50,.08)}
+    .variant-dot{width:19px;height:19px;border:2px solid var(--line);border-radius:50%;margin-top:2px;display:grid;place-items:center}.variant[aria-pressed="true"] .variant-dot{border-color:var(--ink)}.variant[aria-pressed="true"] .variant-dot::after{content:"";width:9px;height:9px;border-radius:50%;background:var(--ink)}
+    .variant-thumb{width:54px;height:48px;object-fit:contain;filter:drop-shadow(3px 4px 3px rgba(24,59,50,.12))}
+    .variant strong{display:block;font-size:15px;margin-bottom:3px}.variant small{display:block;color:var(--muted);font-size:12px;line-height:1.35}
+    .dialog-actions{position:fixed;right:0;bottom:0;width:min(590px,100%);z-index:5;padding:14px 28px 18px;background:linear-gradient(180deg,rgba(255,253,248,0),var(--surface) 25%);display:grid;grid-template-columns:1fr auto;gap:9px;align-items:end}
+    .market-link{display:block;text-align:center;text-decoration:none;background:var(--ink);color:white;border-radius:14px;padding:14px 16px;font-weight:900}
+    .dialog-owned{border:1px solid var(--line);background:white;border-radius:14px;padding:14px;font-weight:900;cursor:pointer}.dialog-owned[aria-pressed="true"]{background:var(--lime)}
+    .disclaimer{font-size:11px;color:var(--muted);grid-column:1/-1;margin:0;text-align:center}
+    @media(max-width:760px){
+      body{padding-bottom:148px}.wrap{width:min(100% - 28px,1160px)}
+      header{min-height:92px;grid-template-columns:1fr auto}.logo{width:190px;justify-self:start}.preview-label{display:none}.current-link{font-size:0}.current-link::after{content:"Текущая ↗";font-size:11px}
+      .hero{display:block;padding:34px 0 28px}.hero h1{font-size:46px;max-width:350px;margin-bottom:15px}.hero-copy{font-size:16px}.progress-card{margin-top:21px;padding:18px}.progress-number{font-size:25px}
+      .workspace-head{display:block}.workspace-head h2{font-size:27px}.view-toggle{margin-top:15px;width:max-content}
+      .zone{padding:18px 13px;border-radius:23px}.zone-head{display:block;margin-bottom:16px}.zone-count{display:inline-block;margin:11px 0 0 42px}.zone h2{font-size:21px}.zone-head p{font-size:13px;margin-left:42px}
+      .items,.zone[data-zone="home"] .items{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.zone[data-zone="home"] .item{grid-column:1/-1;max-width:260px;justify-self:center;width:100%}
+      .item{padding:9px;border-radius:18px}.item-image{height:145px}.item-image img{height:128px}.owned-toggle{right:5px;top:5px;padding:6px;font-size:10px;max-width:78px}.item-body{padding:12px 2px 2px}.item h3{font-size:16px}.item p{font-size:12px}.details{font-size:12px}
+      .summary{bottom:10px;display:block;padding:12px 13px;border-radius:19px}.summary-copy{margin:0 4px 10px}.summary-actions{display:grid;grid-template-columns:1fr auto}.summary button{padding:11px 10px}.summary .secondary{min-width:70px}
+      dialog{margin:auto 0 0;width:100%;height:min(92dvh,820px);border-radius:28px 28px 0 0}.dialog-top{padding:13px 17px}.dialog-content{padding:18px 18px 118px}.detail-visual{height:210px}.dialog-content h2{font-size:35px}.facts{grid-template-columns:1fr}.dialog-actions{width:100%;padding:13px 18px 15px}.market-link,.dialog-owned{padding:13px 10px;font-size:13px}
+    }
+    @media(max-width:390px){.items,.zone[data-zone="home"] .items{grid-template-columns:1fr}.zone[data-zone="home"] .item{grid-column:auto}.item{display:grid;grid-template-columns:132px 1fr;gap:10px}.item-image{height:150px}.item-body{padding-top:5px}.item p{margin-bottom:9px}.details{padding-top:9px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.item,.progress-fill,.toast{transition:none}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <span class="preview-label">Preview · не основная версия</span>
+      <a class="logo" href="#top" aria-label="SOFT POWER — в начало"><img src="https://kseniajarikova.github.io/sekta-winter-shelf-2026/images/soft-power-logo.png" alt="#sekta SOFT POWER"></a>
+      <a class="current-link" href="./" target="_blank" rel="noopener">Открыть текущую версию ↗</a>
+    </header>
+    <main id="top">
+      <section class="hero" aria-labelledby="title">
+        <div>
+          <h1 id="title">Собери свой набор <em>для зимы</em></h1>
+          <p class="hero-copy"><strong>Сначала отметь, что уже есть дома.</strong> Затем посмотри только недостающее — с понятными критериями и несколькими вариантами там, где важны посадка и стиль.</p>
+        </div>
+        <aside class="progress-card" aria-live="polite">
+          <span class="kicker">Твой набор</span>
+          <div class="progress-number" id="progress-number">0 из 7 уже есть</div>
+          <div class="progress-track" aria-hidden="true"><div class="progress-fill" id="progress-fill"></div></div>
+          <p id="progress-help">Начни с любой зоны — покупать всё не нужно.</p>
+        </aside>
+      </section>
+      <section aria-labelledby="workspace-title">
+        <div class="workspace-head">
+          <div><h2 id="workspace-title">Что пригодится зимой</h2><p>Предметы собраны по ситуации, а не по полу или стилю.</p></div>
+          <div class="view-toggle" aria-label="Фильтр предметов">
+            <button type="button" id="show-all" aria-pressed="true">Все 7</button>
+            <button type="button" id="show-missing" aria-pressed="false">Только недостающее</button>
+          </div>
+        </div>
+        <div class="zones" id="zones"></div>
+        <aside class="principle">
+          <span class="principle-icon">✓</span>
+          <div><h2>Продуманная покупка вместо импульсивной</h2><p>Если привычный уход и вещи подходят, менять их перед зимой не нужно. Для особого ухода лучше проконсультироваться с дерматологом.</p></div>
+        </aside>
+      </section>
+    </main>
+    <footer><p>Товары и поисковые направления приведены как примеры по указанным критериям. Не является рекламой. Перед покупкой проверяй актуальные характеристики, цену и отзывы.</p></footer>
+  </div>
+
+  <section class="summary" aria-live="polite">
+    <div class="summary-copy"><strong id="summary-title">Набор пока не отмечен</strong><span id="summary-text">Начни с того, что уже есть дома.</span></div>
+    <div class="summary-actions"><button class="primary" type="button" id="summary-filter">Показать недостающее</button><button class="secondary" type="button" id="reset">Сбросить</button></div>
+  </section>
+  <div class="toast" id="toast" role="status"></div>
+
+  <dialog id="detail-dialog" aria-labelledby="detail-title">
+    <div class="dialog-shell">
+      <div class="dialog-top"><span id="detail-meta">Предмет</span><button class="close" type="button" id="close-dialog" aria-label="Закрыть">×</button></div>
+      <div class="dialog-content">
+        <div class="detail-visual"><img id="detail-image" src="" alt=""></div>
+        <h2 id="detail-title"></h2>
+        <p class="lead" id="detail-lead"></p>
+        <div class="facts">
+          <div class="fact"><strong>Когда пригодится</strong><p id="detail-when"></p></div>
+          <div class="fact"><strong>Что проверить</strong><p id="detail-how"></p></div>
+        </div>
+        <h3 class="variants-title" id="variants-title">Вариант для начала</h3>
+        <p class="variants-help" id="variants-help">Это ориентир по характеристикам, а не обязательная покупка.</p>
+        <div class="variants" id="variants"></div>
+      </div>
+      <div class="dialog-actions">
+        <a class="market-link" id="market-link" href="#" target="_blank" rel="noopener noreferrer">Посмотреть вариант ↗</a>
+        <button class="dialog-owned" id="dialog-owned" type="button" aria-pressed="false">Есть дома</button>
+        <p class="disclaimer">Ссылка ведёт на пример товара или поисковую выдачу маркетплейса.</p>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    const root='https://kseniajarikova.github.io/sekta-winter-shelf-2026/';
+    const zonesData=[
+      {id:'outside',index:'01',title:'Для улицы',description:'Солнце, снег, холод и ветер.',empty:'Для улицы всё уже есть.'},
+      {id:'care',index:'02',title:'Для кожи и волос',description:'Только то, чем действительно будешь пользоваться.',empty:'Уход уже собран.'},
+      {id:'home',index:'03',title:'Для дома',description:'Когда отопление делает воздух слишком сухим.',empty:'Для дома всё уже есть.'}
+    ];
+    const items=[
+      {id:'spf',zone:'outside',title:'SPF-стик',tag:'Солнце и снег',image:root+'images/spf.webp',lead:'Компактный формат, чтобы обновить защиту во время долгой прогулки.',when:'При длительной прогулке, особенно по снегу. Проверяй УФ-индекс: при 3 и выше защита обязательна.',how:'Широкий спектр UVA/UVB и SPF 50+. Стик нужно наносить щедро и обновлять каждые два часа на улице.',variants:[{name:'Компактный SPF 50+',note:'Формат для сумки и повторного нанесения.',url:'https://www.ozon.ru/product/geltek-spf-stik-dlya-litsa-solntsezashchitnyy-spf-50-1615386854/'}]},
+      {id:'hat',zone:'outside',title:'Шапка, закрывающая уши',tag:'Холод и ветер',image:'images/hat-grey-v3.webp',lead:'Три разные конструкции — от простой городской до максимально закрытой.',when:'Для прогулок в холод и ветер. Важно, чтобы посадка закрывала уши и не давила.',how:'Примерь с капюшоном, проверь окружность головы, глубину посадки и материал рядом с кожей.',variants:[
+        {name:'Серая мериносовая бини',note:'Спокойная городская форма с глубокой посадкой, которая полностью закрывает уши.',image:'images/hat-grey-v3.webp',url:'https://www.ozon.ru/search/?text=%D1%81%D0%B5%D1%80%D0%B0%D1%8F%20%D1%88%D0%B0%D0%BF%D0%BA%D0%B0%20%D0%B1%D0%B8%D0%BD%D0%B8%20%D0%BC%D0%B5%D1%80%D0%B8%D0%BD%D0%BE%D1%81'},
+        {name:'Стёганая ушанка-кепка',note:'Козырёк и опускающиеся уши для ветра, снега и долгих прогулок.',image:'images/hat-trapper-v3.webp',url:'https://www.ozon.ru/search/?text=%D1%81%D1%82%D0%B5%D0%B3%D0%B0%D0%BD%D0%B0%D1%8F%20%D1%88%D0%B0%D0%BF%D0%BA%D0%B0%20%D1%83%D1%88%D0%B0%D0%BD%D0%BA%D0%B0%20%D1%81%20%D0%BA%D0%BE%D0%B7%D1%8B%D1%80%D1%8C%D0%BA%D0%BE%D0%BC'},
+        {name:'Флисовый капюшон',note:'Закрывает голову, уши и шею; шнурок помогает отрегулировать посадку.',image:'images/hat-hood-v3.webp',url:'https://www.ozon.ru/search/?text=%D1%84%D0%BB%D0%B8%D1%81%D0%BE%D0%B2%D1%8B%D0%B9%20%D0%BA%D0%B0%D0%BF%D1%8E%D1%88%D0%BE%D0%BD%20%D1%88%D0%B0%D1%80%D1%84%20%D0%B7%D0%B8%D0%BC%D0%BD%D0%B8%D0%B9'}
+      ]},
+      {id:'glasses',zone:'outside',title:'Солнцезащитные очки',tag:'Яркий снег',image:'images/glasses-cat-v3.webp',lead:'Три принципиально разные формы: городская, спортивная и альпинистская.',when:'На ярком солнце, долгой прогулке по снегу и при активном отдыхе.',how:'Ищи маркировку УФ-защиты, широкие линзы, удобную посадку и, если нужно, защиту от бокового света.',variants:[
+        {name:'Угловатая fashion-оправа',note:'Крупная геометричная форма с широкими дужками — для города и яркого зимнего солнца.',image:'images/glasses-cat-v3.webp',url:'https://www.ozon.ru/search/?text=%D0%BA%D1%80%D1%83%D0%BF%D0%BD%D1%8B%D0%B5%20%D1%83%D0%B3%D0%BB%D0%BE%D0%B2%D0%B0%D1%82%D1%8B%D0%B5%20%D0%BE%D1%87%D0%BA%D0%B8%20uv400'},
+        {name:'Спортивный визор',note:'Одна панорамная линза, плотная посадка и широкий обзор во время движения.',image:'images/glasses-shield-v3.webp',url:'https://www.ozon.ru/search/?text=%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B5%20%D0%BE%D1%87%D0%BA%D0%B8%20%D0%B2%D0%B8%D0%B7%D0%BE%D1%80%20uv400'},
+        {name:'Круглые ледниковые',note:'Круглые линзы и боковые шторки защищают от отражённого света на снегу.',image:'images/glasses-glacier-v3.webp',url:'https://www.ozon.ru/search/?text=%D0%BA%D1%80%D1%83%D0%B3%D0%BB%D1%8B%D0%B5%20%D0%BB%D0%B5%D0%B4%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%D1%8B%D0%B5%20%D0%BE%D1%87%D0%BA%D0%B8%20%D1%81%20%D0%B1%D0%BE%D0%BA%D0%BE%D0%B2%D1%8B%D0%BC%D0%B8%20%D1%88%D1%82%D0%BE%D1%80%D0%BA%D0%B0%D0%BC%D0%B8'}
+      ]},
+      {id:'hands',zone:'care',title:'Крем для рук',tag:'После мытья рук',image:root+'images/hands.webp',lead:'Один тюбик у раковины и один в сумке проще встроить в день.',when:'После мытья рук и при ощущении сухости. Если привычный крем справляется, менять его не нужно.',how:'При сухости выбирай более плотный крем без отдушки. Ориентиры: глицерин, церамиды, вазелин или диметикон.',variants:[{name:'Плотный крем без отдушки',note:'Для регулярного использования дома и в сумке.',url:'https://www.ozon.ru/product/anatomy-uvlazhnyayushchiy-krem-dlya-ruk-s-tseramidami-i-pantenolom-100-ml-876950429/'}]},
+      {id:'lip',zone:'care',title:'Бальзам для губ',tag:'Мороз и сухость',image:root+'images/lip.webp',lead:'Для дневной прогулки пригодится SPF, а на ночь — простой плотный уход.',when:'Перед выходом на улицу и в течение дня, если губы сохнут.',how:'Для зимнего ухода выбирай средство без отдушки, ментола и камфоры. Днём может пригодиться SPF.',variants:[{name:'Дневной бальзам с SPF',note:'Для прогулки в светлое время суток.',url:'https://www.ozon.ru/product/uriage-bariesun-solntsezashchitnyy-stik-dlya-gub-spf-30-4-g-804960465/'}]},
+      {id:'hair',zone:'care',title:'Термозащита для волос',tag:'Фен и укладка',image:root+'images/hair.webp',lead:'Нужна не из-за зимы самой по себе, а если часто используешь фен или горячую укладку.',when:'Перед сушкой и горячей укладкой.',how:'Проверь назначение средства и следуй инструкции. Формат выбирай по типу волос: лёгкий спрей или более плотный крем.',variants:[{name:'Лёгкий спрей без отдушки',note:'Для регулярной сушки феном и лёгкого распределения.',url:'https://www.ozon.ru/product/sprey-dlya-volos-termozashchita-150-ml-system-4-dlya-legkogo-raschesyvaniya-volos-611569198/'}]},
+      {id:'humid',zone:'home',title:'Увлажнитель воздуха',tag:'Сухой воздух',image:root+'images/humid.webp',lead:'Может помочь, если дома из-за отопления воздух слишком сухой.',when:'Если низкая влажность сопровождается сухостью кожи, носа или горла. Ориентир — 30–50%.',how:'Для спальни пригодится тихая модель с гигростатом и отключаемой подсветкой. Воду меняют ежедневно, прибор регулярно очищают.',variants:[{name:'Тихая модель с гигростатом',note:'Для спальни и контроля целевой влажности.',url:'https://www.ozon.ru/product/uvlazhnitel-vozduha-ultrazvukovoy-goldstar-gshe-415-uv-1658931147/'}]}
+    ];
+    const owned=new Set(JSON.parse(localStorage.getItem('winter-kit-preview-owned')||'[]'));
+    const chosen=JSON.parse(localStorage.getItem('winter-kit-preview-variants')||'{}');
+    let onlyMissing=false,current=null,toastTimer=null;
+    const zonesEl=document.getElementById('zones');
+    const dialog=document.getElementById('detail-dialog');
+    function save(){localStorage.setItem('winter-kit-preview-owned',JSON.stringify([...owned]));localStorage.setItem('winter-kit-preview-variants',JSON.stringify(chosen))}
+    function escapeHtml(s){return s.replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
+    function itemCard(item){const isOwned=owned.has(item.id);return `<article class="item${isOwned?' is-owned':''}" data-item="${item.id}"><div class="item-image"><img src="${item.image}" alt="" loading="lazy"><button class="owned-toggle" type="button" aria-label="${isOwned?'Убрать отметку:':'Отметить, что дома уже есть:'} ${escapeHtml(item.title)}" aria-pressed="${isOwned}" data-own="${item.id}">${isOwned?'✓ Уже есть':'Есть дома?'}</button></div><div class="item-body"><span class="item-tag">${item.tag}</span><h3>${item.title}</h3><p>${item.variants.length>1?item.variants.length+' варианта по задаче':item.lead}</p><button class="details" type="button" data-open="${item.id}">Подробности${item.variants.length>1?' и варианты':''} →</button></div></article>`}
+    function render(){zonesEl.innerHTML=zonesData.map(z=>{const list=items.filter(x=>x.zone===z.id&&(!onlyMissing||!owned.has(x.id)));const allOwned=onlyMissing&&list.length===0;return `<section class="zone${allOwned?' all-owned':''}" data-zone="${z.id}" aria-labelledby="zone-${z.id}"><div class="zone-head"><div><div class="zone-title"><span class="zone-index">${z.index}</span><h2 id="zone-${z.id}">${z.title}</h2></div><p>${z.description}</p></div><span class="zone-count">${items.filter(x=>x.zone===z.id).length} предмет${items.filter(x=>x.zone===z.id).length===1?'':'а'}</span></div><div class="items">${list.map(itemCard).join('')}</div><div class="empty-zone">✓ ${z.empty}</div></section>`}).join('');bind();updateSummary()}
+    function bind(){document.querySelectorAll('[data-own]').forEach(b=>b.onclick=()=>toggleOwned(b.dataset.own));document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>openItem(b.dataset.open))}
+    function toggleOwned(id){const item=items.find(x=>x.id===id);if(owned.has(id)){owned.delete(id);showToast('Убрано из отметок: '+item.title)}else{owned.add(id);showToast('Отмечено: уже есть дома')}save();render();if(current?.id===id)syncDialogOwned()}
+    function updateSummary(){const n=owned.size,missing=items.length-n;document.getElementById('progress-number').textContent=n+' из '+items.length+' уже есть';document.getElementById('progress-fill').style.width=(n/items.length*100)+'%';document.getElementById('progress-help').textContent=n===0?'Начни с любой зоны — покупать всё не нужно.':missing===0?'Набор собран. Новые покупки не нужны.':'Осталось проверить '+missing+' '+plural(missing,'предмет','предмета','предметов')+'.';document.getElementById('summary-title').textContent=n===0?'Набор пока не отмечен':missing===0?'Всё нужное уже есть':n+' из '+items.length+' уже дома';document.getElementById('summary-text').textContent=missing===0?'Можно закрыть список без покупок.':'Не отмечено: '+missing+' '+plural(missing,'предмет','предмета','предметов')+'.';document.getElementById('summary-filter').textContent=onlyMissing?'Показать весь набор':'Показать недостающее';document.getElementById('show-all').setAttribute('aria-pressed',!onlyMissing);document.getElementById('show-missing').setAttribute('aria-pressed',onlyMissing)}
+    function plural(n,a,b,c){const m=n%10,h=n%100;return m===1&&h!==11?a:m>=2&&m<=4&&(h<12||h>14)?b:c}
+    function setFilter(value){onlyMissing=value;render();document.getElementById('workspace-title').scrollIntoView({behavior:'smooth',block:'start'})}
+    function openItem(id){current=items.find(x=>x.id===id);const index=items.findIndex(x=>x.id===id)+1;document.getElementById('detail-meta').textContent=current.tag+' · '+index+' / '+items.length;document.getElementById('detail-image').src=current.detailImage||current.image;document.getElementById('detail-image').alt=current.variants.length>1?'Три визуальных варианта: '+current.title:'';document.getElementById('detail-title').textContent=current.title;document.getElementById('detail-lead').textContent=current.lead;document.getElementById('detail-when').textContent=current.when;document.getElementById('detail-how').textContent=current.how;document.getElementById('variants-title').textContent=current.variants.length>1?'Выбери подходящий сценарий':'Вариант для начала';document.getElementById('variants-help').textContent=current.variants.length>1?'Не по полу, а по посадке и задаче.':'Это ориентир по характеристикам, а не обязательная покупка.';if(chosen[id]===undefined)chosen[id]=0;renderVariants();syncDialogOwned();dialog.showModal()}
+    function renderVariants(){const box=document.getElementById('variants'),selected=chosen[current.id]||0;box.innerHTML=current.variants.map((v,i)=>`<button class="variant" type="button" aria-pressed="${i===selected}" data-variant="${i}"><span class="variant-dot" aria-hidden="true"></span><img class="variant-thumb" src="${v.image||current.image}" alt=""><span><strong>${v.name}</strong><small>${v.note}</small></span></button>`).join('');box.querySelectorAll('[data-variant]').forEach(b=>b.onclick=()=>{chosen[current.id]=Number(b.dataset.variant);save();renderVariants()});document.getElementById('market-link').href=current.variants[selected].url;document.getElementById('market-link').textContent=current.variants.length>1?'Посмотреть этот вариант ↗':'Посмотреть пример ↗'}
+    function syncDialogOwned(){const b=document.getElementById('dialog-owned'),yes=owned.has(current.id);b.setAttribute('aria-pressed',yes);b.textContent=yes?'✓ Уже есть':'Есть дома'}
+    function showToast(text){const t=document.getElementById('toast');t.textContent=text;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),1800)}
+    document.getElementById('show-all').onclick=()=>setFilter(false);document.getElementById('show-missing').onclick=()=>setFilter(true);document.getElementById('summary-filter').onclick=()=>setFilter(!onlyMissing);document.getElementById('reset').onclick=()=>{owned.clear();onlyMissing=false;save();render();showToast('Отметки сброшены')};document.getElementById('close-dialog').onclick=()=>dialog.close();document.getElementById('dialog-owned').onclick=()=>toggleOwned(current.id);dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close()});
+    render();
+  </script>
+</body>
+</html>
+
