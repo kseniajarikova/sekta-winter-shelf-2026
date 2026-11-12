@@ -4,15 +4,20 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#eaf0e7"><title>Что пригодится зимой · полки</title>
 <style>
-:root{--ink:#263b36;--muted:#65736f;--mint:#eaf0e7;--line:#ccd7cd;--shelf:#a87f64;--shadow:#644b3b;--lime:#e9f39d}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--mint);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.45}button,a{font:inherit;color:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid #254e95;outline-offset:4px}.wrap{max-width:1120px;margin:auto;padding:0 28px}
-header{display:flex;justify-content:center;padding:30px 0;border-bottom:1px solid rgba(38,59,54,.18)}.brand{width:310px;max-width:78%}.brand img{display:block;width:100%}
-.hero{max-width:790px;padding:54px 0 36px}.hero h1{font-size:clamp(49px,7vw,86px);line-height:1.02;letter-spacing:-.07em;margin:0 0 22px}.hero h1 em{font-style:normal;color:#6d907e}.hero p{font-size:clamp(17px,2vw,21px);margin:0}.hero .context{font-size:15px;color:var(--muted);margin-top:18px;max-width:690px}.hero .context strong{color:var(--ink)}
-.shelves{display:grid;gap:52px;padding:20px 0 72px}.shelves>article{min-width:0}.shelf-head{display:grid;grid-template-columns:auto 1fr auto;gap:14px 18px;align-items:start;margin:0 10px 18px}.num{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--ink);color:#fff;font-size:12px;font-weight:900}.copy h2{font-size:27px;line-height:1.05;letter-spacing:-.045em;margin:2px 0 7px}.copy p{font-size:14px;color:var(--muted);margin:0;max-width:650px}.owned{border:1px solid var(--ink);background:transparent;border-radius:999px;padding:9px 13px;font-size:12px;font-weight:800;white-space:nowrap}.owned[aria-pressed=true]{background:var(--lime)}
-.display{position:relative;min-width:0;border:1px solid #d8e0d6;border-radius:24px 24px 8px 8px;background:linear-gradient(180deg,#f5f6ef,#e7ebdf);padding:24px 24px 0;box-shadow:0 22px 45px rgba(50,67,51,.07)}.display:after{content:"";position:absolute;left:-1px;right:-1px;bottom:-18px;height:20px;background:var(--shelf);border-radius:0 0 8px 8px;box-shadow:0 9px 0 -3px var(--shadow),0 18px 25px -14px rgba(75,55,40,.32)}.track{max-width:100%;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:thin;padding-bottom:17px}.variants{display:grid;grid-template-columns:repeat(var(--count),minmax(0,1fr));gap:18px;min-width:620px;align-items:end}.variant{scroll-snap-align:start;text-align:center;min-width:0;padding:0 8px 9px}.picture{height:176px;display:flex;align-items:flex-end;justify-content:center}.picture img{display:block;width:100%;height:100%;object-fit:contain;object-position:center bottom;filter:drop-shadow(8px 10px 6px rgba(38,59,54,.18)) hue-rotate(var(--hue)) saturate(var(--sat));transform:scale(var(--scale))}.variant h3{font-size:17px;line-height:1.16;margin:15px 0 6px}.variant p{min-height:38px;color:var(--muted);font-size:12px;line-height:1.35;margin:0}.tag{display:inline-flex;margin-top:10px;border:1px solid #afc0b2;border-radius:999px;padding:4px 8px;font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#526860;background:rgba(255,255,255,.6)}.more{display:inline-block;margin-top:9px;font-size:11px;font-weight:900;text-underline-offset:3px}
-.thinking{max-width:760px;background:var(--lime);border-radius:26px;padding:30px;margin:4px 0 90px}.thinking h2{font-size:28px;line-height:1.08;letter-spacing:-.045em;margin:0 0 13px}.thinking p{font-size:16px;margin:0}footer{border-top:1px solid var(--line);padding:25px 0 42px;color:var(--muted);font-size:12px}
-@media(max-width:700px){.wrap{padding:0 17px}header{padding:22px 0}.brand{width:220px}.hero{padding:39px 0 24px}.hero h1{font-size:54px}.hero p{font-size:17px}.hero .context{font-size:14px}.shelves{gap:44px;padding-top:10px}.shelf-head{grid-template-columns:auto 1fr;margin:0 3px 14px}.owned{grid-column:2;justify-self:start}.display{padding:18px 12px 0;border-radius:18px 18px 7px 7px}.variants{grid-template-columns:repeat(var(--count),minmax(170px,1fr));min-width:calc(var(--count) * 176px);gap:8px}.picture{height:150px}.variant h3{font-size:15px}.variant p{min-height:49px}.thinking{padding:24px;margin-bottom:60px}.thinking h2{font-size:25px}}
+:root{--ink:#f8f2ff;--muted:#c9bbd5;--bg:#271632;--line:rgba(242,225,255,.2);--shelf:#dbc7ed;--shadow:#806095;--lime:#f0e6a5;--panel-ink:#35283e;--panel-muted:#706279}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.45}button,a{font:inherit;color:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid #f4d96f;outline-offset:4px}.wrap{max-width:1120px;margin:auto;padding:0 28px}
+header{display:flex;justify-content:center;padding:30px 0;border-bottom:1px solid var(--line)}.brand{width:310px;max-width:78%}.brand img{display:block;width:100%;filter:brightness(0) invert(1);opacity:.94}
+.hero{max-width:790px;padding:54px 0 36px}.hero h1{font-size:clamp(49px,7vw,86px);line-height:1.02;letter-spacing:-.07em;margin:0 0 22px}.hero h1 em{font-style:normal;color:#d7bff1}.hero p{font-size:clamp(17px,2vw,21px);margin:0}.hero .context{font-size:15px;color:var(--muted);margin-top:18px;max-width:690px}.hero .context strong{color:var(--ink)}
+.shelves{display:grid;gap:58px;padding:20px 0 78px}.shelves>article{min-width:0}.shelf-head{display:grid;grid-template-columns:auto 1fr auto;gap:14px 18px;align-items:start;margin:0 10px 18px}.num{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:#f3e8ff;color:#3f2b4b;font-size:12px;font-weight:900;box-shadow:0 0 24px rgba(232,205,255,.28)}.copy h2{font-size:27px;line-height:1.05;letter-spacing:-.045em;margin:2px 0 7px}.copy p{font-size:14px;color:var(--muted);margin:0;max-width:650px}.owned{border:1px solid rgba(248,242,255,.72);color:var(--ink);background:rgba(255,255,255,.04);border-radius:999px;padding:9px 13px;font-size:12px;font-weight:800;white-space:nowrap}.owned[aria-pressed=true]{background:var(--lime);color:#382d22;border-color:var(--lime)}
+.display{position:relative;min-width:0;color:var(--panel-ink);border:1px solid rgba(255,255,255,.75);border-radius:24px 24px 8px 8px;background:linear-gradient(180deg,#fcf9ff 0%,#eee4f7 100%);padding:24px 24px 0;box-shadow:0 0 0 1px rgba(232,207,255,.12),0 20px 55px rgba(213,178,244,.18),0 0 70px rgba(213,188,238,.1)}.display:after{content:"";position:absolute;left:-1px;right:-1px;bottom:-18px;height:20px;background:linear-gradient(180deg,#eadcf5,#cdb2e1);border-radius:0 0 8px 8px;box-shadow:0 8px 0 -3px var(--shadow),0 16px 30px -12px rgba(210,177,238,.42),0 0 34px rgba(236,218,252,.26)}.track{max-width:100%;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:thin;padding-bottom:17px}.variants{display:grid;grid-template-columns:repeat(var(--count),minmax(0,1fr));gap:18px;min-width:620px;align-items:end}.variant{scroll-snap-align:start;text-align:center;min-width:0;padding:0 8px 9px}.picture{height:190px;display:flex;align-items:flex-end;justify-content:center}.picture img{display:block;width:100%;height:100%;object-fit:contain;object-position:center bottom;filter:drop-shadow(8px 12px 7px rgba(55,32,67,.2))}.variant h3{font-size:17px;line-height:1.16;margin:15px 0 6px}.variant p{min-height:38px;color:var(--panel-muted);font-size:12px;line-height:1.35;margin:0}.tag{display:inline-flex;margin-top:10px;border:1px solid #c7b5d2;border-radius:999px;padding:4px 8px;font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#665270;background:rgba(255,255,255,.58)}.more{display:inline-block;margin-top:9px;font-size:11px;font-weight:900;text-underline-offset:3px;color:#4f3860}
+.thinking{max-width:760px;background:linear-gradient(135deg,#f0e6a5,#e8d8fa);color:#35283e;border-radius:26px;padding:30px;margin:4px 0 90px;box-shadow:0 18px 50px rgba(14,5,20,.18)}.thinking h2{font-size:28px;line-height:1.08;letter-spacing:-.045em;margin:0 0 13px}.thinking p{font-size:16px;margin:0}footer{border-top:1px solid var(--line);padding:25px 0 42px;color:var(--muted);font-size:12px}
+@media(max-width:700px){.wrap{padding:0 17px}header{padding:22px 0}.brand{width:220px}.hero{padding:39px 0 24px}.hero h1{font-size:54px}.hero p{font-size:17px}.hero .context{font-size:14px}.shelves{gap:48px;padding-top:10px}.shelf-head{grid-template-columns:auto 1fr;margin:0 3px 14px}.owned{grid-column:2;justify-self:start}.display{padding:18px 12px 0;border-radius:18px 18px 7px 7px}.variants{grid-template-columns:repeat(var(--count),minmax(170px,1fr));min-width:calc(var(--count) * 176px);gap:8px}.picture{height:164px}.variant h3{font-size:15px}.variant p{min-height:49px}.thinking{padding:24px;margin-bottom:60px}.thinking h2{font-size:25px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.picture img:is([src$="spf-sensitive.webp"],[src$="hands-pump.webp"],[src$="lip-stick.webp"],[src$="humid-compact.webp"]){width:190px;max-width:100%}
+.picture img[src$="spf-sensitive.webp"]{clip-path:inset(0 40% 0 3%)}
+.picture img[src$="hands-pump.webp"]{clip-path:inset(0 36% 0 35%)}
+.picture img[src$="lip-stick.webp"]{clip-path:inset(0 30% 0 0)}
+.picture img[src$="humid-compact.webp"]{clip-path:inset(0 36% 0 0);transform:translateX(10%)}
 </style>
 </head>
 <body><div class="wrap">
@@ -23,40 +28,39 @@ header{display:flex;justify-content:center;padding:30px 0;border-bottom:1px soli
 <footer>Товары и поисковые направления приведены как примеры по указанным критериям. Не является рекламой.</footer>
 </div>
 <script>
-const root='https://kseniajarikova.github.io/sekta-winter-shelf-2026/';
 const data=[
-{id:'spf',title:'SPF-стик',tag:'для улицы',img:'spf.webp',intro:'Защита для долгой прогулки и яркого снега.',variants:[
-['Компактный для сумки','Удобно обновлять на прогулке.',0,'SPF стик 50 компактный'],
-['Для чувствительной кожи','Без отдушки и лишних активов.',42,'SPF стик 50 без отдушки'],
-['Для активной прогулки','С устойчивостью к влаге и поту.',105,'водостойкий SPF стик 50']]},
-{id:'hat',title:'Шапка, закрывающая уши',tag:'для улицы',img:'hat.webp',intro:'Три сценария посадки — выбирай по погоде и привычному стилю.',variants:[
-['Глубокая бини','Для города и обычных прогулок.',0,'глубокая зимняя шапка бини'],
-['С утеплёнными ушами','Для ветра и долгого времени на улице.',80,'шапка с утепленными ушами'],
-['Мягкий капор','Закрывает голову, уши и шею.',180,'мягкий зимний капор']]},
-{id:'glasses',title:'Солнцезащитные очки',tag:'для улицы',img:'glasses.webp',intro:'Разная степень закрытости для города, движения и яркого снега.',variants:[
-['Городская широкая оправа','Крупные линзы на каждый день.',0,'широкие солнцезащитные очки UV400'],
-['Спортивная посадка','Плотнее сидит во время движения.',70,'спортивные очки UV400'],
-['С боковой защитой','Для яркого снега и открытой местности.',145,'ледниковые очки боковая защита']]},
-{id:'hands',title:'Крем для рук',tag:'для кожи',img:'hands.webp',intro:'Разная плотность для дома, сумки и очень сухой кожи.',variants:[
-['Лёгкий на каждый день','Быстро впитывается после мытья рук.',0,'легкий крем для рук'],
-['Барьерный с церамидами','Для регулярной сухости.',55,'крем для рук с церамидами'],
-['Плотный защитный','Для мороза и сильной сухости.',120,'плотный крем для рук без отдушки']]},
-{id:'lip',title:'Бальзам для губ',tag:'для кожи',img:'lip.webp',intro:'Дневная защита и более плотный уход на ночь.',variants:[
-['Нейтральный без отдушки','Для регулярного использования.',0,'бальзам для губ без отдушки'],
-['Дневной с SPF','Для прогулок в светлое время.',70,'бальзам для губ SPF'],
-['Плотный ночной','Для выраженной сухости.',160,'плотный бальзам для губ на ночь']]},
-{id:'hair',title:'Термозащита для волос',tag:'для волос',img:'hair.webp',intro:'Формат выбирай по типу волос и привычному способу укладки.',variants:[
-['Лёгкий спрей','Для тонких волос и частой сушки.',0,'легкий спрей термозащита'],
-['Крем-термозащита','Для более плотных и сухих волос.',65,'крем термозащита для волос'],
-['Несмываемый уход','Защита и дополнительное смягчение.',145,'несмываемый уход термозащита']]},
-{id:'humid',title:'Увлажнитель воздуха',tag:'для дома',img:'humid.webp',intro:'Два понятных сценария — для небольшой комнаты и для спальни.',variants:[
-['Компактный для комнаты','Для небольшого пространства.',0,'компактный увлажнитель воздуха'],
-['Тихий с гигростатом','Для спальни и контроля влажности.',95,'тихий увлажнитель с гигростатом']]}
+{id:'spf',title:'SPF-стик',tag:'для улицы',intro:'Защита для долгой прогулки и яркого снега.',variants:[
+['Компактный для сумки','Удобно обновлять на прогулке.','spf-pocket.webp','SPF стик 50 компактный'],
+['Для чувствительной кожи','Без отдушки и лишних активов.','spf-sensitive.webp','SPF стик 50 без отдушки'],
+['Для активной прогулки','С устойчивостью к влаге и поту.','spf-sport.webp','водостойкий SPF стик 50']]},
+{id:'hat',title:'Шапка, закрывающая уши',tag:'для улицы',intro:'Три сценария посадки — выбирай по погоде и привычному стилю.',variants:[
+['Глубокая бини','Для города и обычных прогулок.','hat-beanie.webp','глубокая зимняя шапка бини'],
+['С утеплёнными ушами','Для ветра и долгого времени на улице.','hat-earflap.webp','шапка с утепленными ушами'],
+['Мягкий капор','Закрывает голову, уши и шею.','hat-hood.webp','мягкий зимний капор']]},
+{id:'glasses',title:'Солнцезащитные очки',tag:'для улицы',intro:'Разная степень закрытости для города, движения и яркого снега.',variants:[
+['Городская широкая оправа','Крупные линзы на каждый день.','glasses-city.webp','широкие солнцезащитные очки UV400'],
+['Спортивная посадка','Плотнее сидит во время движения.','glasses-sport.webp','спортивные очки UV400'],
+['С боковой защитой','Для яркого снега и открытой местности.','glasses-glacier.webp','ледниковые очки боковая защита']]},
+{id:'hands',title:'Крем для рук',tag:'для кожи',intro:'Разная плотность для дома, сумки и очень сухой кожи.',variants:[
+['Плотный защитный','Для мороза и сильной сухости.','hands-rich.webp','плотный крем для рук без отдушки'],
+['Барьерный с церамидами','Для регулярной сухости.','hands-pump.webp','крем для рук с церамидами'],
+['Лёгкий на каждый день','Быстро впитывается после мытья рук.','hands-daily.webp','легкий крем для рук']]},
+{id:'lip',title:'Бальзам для губ',tag:'для кожи',intro:'Дневная защита и более плотный уход на ночь.',variants:[
+['Классический стик','Для регулярного использования.','lip-stick.webp','бальзам для губ без отдушки'],
+['Дневной с SPF','Для прогулок в светлое время.','lip-tube.webp','бальзам для губ SPF'],
+['Плотный ночной','Для выраженной сухости.','lip-pot.webp','плотный бальзам для губ на ночь']]},
+{id:'hair',title:'Термозащита для волос',tag:'для волос',intro:'Формат выбирай по типу волос и привычному способу укладки.',variants:[
+['Лёгкий спрей','Для тонких волос и частой сушки.','hair-spray.webp','легкий спрей термозащита'],
+['Крем-термозащита','Для более плотных и сухих волос.','hair-cream.webp','крем термозащита для волос'],
+['Несмываемый уход','Защита и дополнительное смягчение.','hair-pump.webp','несмываемый уход термозащита']]},
+{id:'humid',title:'Увлажнитель воздуха',tag:'для дома',intro:'Два понятных сценария — для небольшой комнаты и для спальни.',variants:[
+['Компактный для комнаты','Для небольшого пространства.','humid-compact.webp','компактный увлажнитель воздуха'],
+['Тихий с гигростатом','Для спальни и контроля влажности.','humid-hygro.webp','тихий увлажнитель с гигростатом']]}
 ];
 const owned=new Set(JSON.parse(localStorage.getItem('winter-shelves-owned')||'[]'));
 const enc=s=>'https://www.ozon.ru/search/?text='+encodeURIComponent(s);
 function render(){
- document.getElementById('shelves').innerHTML=data.map((s,i)=>`<article><div class="shelf-head"><span class="num">0${i+1}</span><div class="copy"><h2>${s.title}</h2><p>${s.intro}</p></div><button class="owned" data-owned="${s.id}" aria-pressed="${owned.has(s.id)}">${owned.has(s.id)?'✓ Подходящий уже есть':'Подходящий уже есть?'}</button></div><div class="display"><div class="track"><div class="variants" style="--count:${s.variants.length}">${s.variants.map((v,j)=>`<div class="variant" style="--hue:${v[2]}deg;--sat:${1+j*.08};--scale:${1-j*.025}"><div class="picture"><img src="${root}images/${s.img}" alt="" loading="lazy"></div><h3>${v[0]}</h3><p>${v[1]}</p><span class="tag">${s.tag}</span><br><a class="more" href="${enc(v[3])}" target="_blank" rel="noopener noreferrer">Посмотреть варианты ↗</a></div>`).join('')}</div></div></div></article>`).join('');
+ document.getElementById('shelves').innerHTML=data.map((s,i)=>`<article><div class="shelf-head"><span class="num">0${i+1}</span><div class="copy"><h2>${s.title}</h2><p>${s.intro}</p></div><button class="owned" data-owned="${s.id}" aria-pressed="${owned.has(s.id)}">${owned.has(s.id)?'✓ Подходящий уже есть':'Подходящий уже есть?'}</button></div><div class="display"><div class="track"><div class="variants" style="--count:${s.variants.length}">${s.variants.map(v=>`<div class="variant"><div class="picture"><img src="images/${v[2]}" alt="" loading="lazy"></div><h3>${v[0]}</h3><p>${v[1]}</p><span class="tag">${s.tag}</span><br><a class="more" href="${enc(v[3])}" target="_blank" rel="noopener noreferrer">Посмотреть варианты ↗</a></div>`).join('')}</div></div></div></article>`).join('');
  document.querySelectorAll('[data-owned]').forEach(b=>b.onclick=()=>{owned.has(b.dataset.owned)?owned.delete(b.dataset.owned):owned.add(b.dataset.owned);localStorage.setItem('winter-shelves-owned',JSON.stringify([...owned]));render()});
 }
 render();
