@@ -13,11 +13,18 @@ header{display:flex;justify-content:center;padding:30px 0;border-bottom:1px soli
 .thinking{max-width:760px;background:linear-gradient(135deg,#f0e6a5,#e8d8fa);color:#35283e;border-radius:26px;padding:30px;margin:4px 0 90px;box-shadow:0 18px 50px rgba(14,5,20,.18)}.thinking h2{font-size:28px;line-height:1.08;letter-spacing:-.045em;margin:0 0 13px}.thinking p{font-size:16px;margin:0}footer{border-top:1px solid var(--line);padding:25px 0 42px;color:var(--muted);font-size:12px}
 @media(max-width:700px){.wrap{padding:0 17px}header{padding:22px 0}.brand{width:220px}.hero{padding:39px 0 24px}.hero h1{font-size:54px}.hero p{font-size:17px}.hero .context{font-size:14px}.shelves{gap:48px;padding-top:10px}.shelf-head{grid-template-columns:auto 1fr;margin:0 3px 14px}.owned{grid-column:2;justify-self:start}.display{padding:18px 12px 0;border-radius:18px 18px 7px 7px}.variants{grid-template-columns:repeat(var(--count),minmax(170px,1fr));min-width:calc(var(--count) * 176px);gap:8px}.picture{height:164px}.variant h3{font-size:15px}.variant p{min-height:49px}.thinking{padding:24px;margin-bottom:60px}.thinking h2{font-size:25px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-.picture img:is([src$="spf-sensitive.webp"],[src$="hands-pump.webp"],[src$="lip-stick.webp"],[src$="humid-compact.webp"]){width:190px;max-width:100%}
-.picture img[src$="spf-sensitive.webp"]{clip-path:inset(0 40% 0 3%)}
-.picture img[src$="hands-pump.webp"]{clip-path:inset(0 36% 0 35%)}
-.picture img[src$="lip-stick.webp"]{clip-path:inset(0 30% 0 0)}
-.picture img[src$="humid-compact.webp"]{clip-path:inset(0 36% 0 0);transform:translateX(10%)}
+@page{size:A4;margin:12mm}
+@media print{
+ body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .wrap{max-width:none;padding:0}
+ header{padding:8mm 0 7mm}.brand{width:180px}
+ .hero{max-width:168mm;padding:12mm 0 9mm}.hero h1{font-size:52px}.hero p{font-size:16px}.hero .context{font-size:13px}
+ .shelves{gap:13mm;padding:5mm 0 14mm}.shelves>article{break-inside:avoid-page;page-break-inside:avoid}
+ .shelf-head{margin-bottom:12px}.copy h2{font-size:22px}.copy p{font-size:12px}.owned{display:none}
+ .display{padding:14px 14px 0}.track{overflow:visible;padding-bottom:13px}.variants{min-width:0;gap:8px}.variant{padding:0 4px 7px}.picture{height:132px}.variant h3{font-size:13px;margin-top:8px}.variant p{font-size:10px;min-height:28px}.tag{font-size:8px}.more{font-size:9px}
+ .thinking{break-inside:avoid-page;page-break-inside:avoid;margin-bottom:14mm;padding:22px}.thinking h2{font-size:23px}.thinking p{font-size:13px}
+ footer{padding:18px 0 8px}
+}
 </style>
 </head>
 <body><div class="wrap">
@@ -25,44 +32,42 @@ header{display:flex;justify-content:center;padding:30px 0;border-bottom:1px soli
 <main><section class="hero"><h1>Что пригодится <em>зимой</em></h1><p>На каждой полке — несколько вариантов одного предмета. Смотри не только на внешний вид, но и на задачу, посадку и то, как вещь впишется в твой привычный уход.</p><p class="context"><strong>Сначала проверь, что уже есть дома.</strong> Затем сравни варианты и выбирай только то, чего действительно не хватает.</p></section>
 <section class="shelves" id="shelves" aria-label="Полки с зимними предметами"></section>
 <section class="thinking"><h2>Продуманная покупка — без спешки</h2><p>Если привычный уход или вещь подходят для зимних условий, их можно оставить. Если не хватает защиты от холода, солнца или сухого воздуха — выбери вариант, который отвечает именно твоей задаче.</p></section></main>
-<footer>Товары и поисковые направления приведены как примеры по указанным критериям. Не является рекламой.</footer>
+<footer>Ссылки ведут на первые доступные подходящие товары из выдачи на 13 ноября 2026 года. Наличие и цены могут измениться. Не является рекламой.</footer>
 </div>
 <script>
 const data=[
 {id:'spf',title:'SPF-стик',tag:'для улицы',intro:'Защита для долгой прогулки и яркого снега.',variants:[
-['Компактный для сумки','Удобно обновлять на прогулке.','spf-pocket.webp','SPF стик 50 компактный'],
-['Для чувствительной кожи','Без отдушки и лишних активов.','spf-sensitive.webp','SPF стик 50 без отдушки'],
-['Для активной прогулки','С устойчивостью к влаге и поту.','spf-sport.webp','водостойкий SPF стик 50']]},
+['Компактный для сумки','Удобно обновлять на прогулке.','spf-pocket.webp','https://www.ozon.ru/product/vois-spf-50-dlya-litsa-spf-dlya-litsa-stik-solntsezashchitnyy-4069476650/'],
+['Для чувствительной кожи','Без отдушки и лишних активов.','spf-sensitive.webp','https://www.ozon.ru/product/round-lab-solntsezashchitnyy-krem-stik-50-spf-dlya-litsa-i-tela-spf-v-stike-uvlazhnyayushchiy-birch-2632889056/'],
+['Для активной прогулки','С устойчивостью к влаге и поту.','spf-sport.webp','https://www.ozon.ru/product/librederm-solntsezashchitnyy-stik-dlya-litsa-i-tela-spf-50-bronziada-sport-4-8g-1328383647/']]},
 {id:'hat',title:'Шапка, закрывающая уши',tag:'для улицы',intro:'Три сценария посадки — выбирай по погоде и привычному стилю.',variants:[
-['Глубокая бини','Для города и обычных прогулок.','hat-beanie.webp','глубокая зимняя шапка бини'],
-['С утеплёнными ушами','Для ветра и долгого времени на улице.','hat-earflap.webp','шапка с утепленными ушами'],
-['Мягкий капор','Закрывает голову, уши и шею.','hat-hood.webp','мягкий зимний капор']]},
+['Глубокая бини','Для города и обычных прогулок.','hat-beanie.webp','https://www.ozon.ru/product/shapka-bini-zimnyaya-1-sht-3019968396/'],
+['С утеплёнными ушами','Для ветра и долгого времени на улице.','hat-earflap.webp','https://www.ozon.ru/product/shapka-ushanka-1-sht-3113337097/'],
+['Мягкий капор','Закрывает голову, уши и шею.','hat-hood.webp','https://www.ozon.ru/product/balaklava-zimnyaya-2895083150/']]},
 {id:'glasses',title:'Солнцезащитные очки',tag:'для улицы',intro:'Разная степень закрытости для города, движения и яркого снега.',variants:[
-['Городская широкая оправа','Крупные линзы на каждый день.','glasses-city.webp','широкие солнцезащитные очки UV400'],
-['Спортивная посадка','Плотнее сидит во время движения.','glasses-sport.webp','спортивные очки UV400'],
-['С боковой защитой','Для яркого снега и открытой местности.','glasses-glacier.webp','ледниковые очки боковая защита']]},
+['Городская широкая оправа','Крупные линзы на каждый день.','glasses-city.webp','https://www.ozon.ru/product/shirokie-solntsezashchitnye-ochki-s-polyarizatsiey-i-uv-filtrom-v-komplekte-chehol-tryapochka-2168505062/'],
+['Спортивная посадка','Плотнее сидит во время движения.','glasses-sport.webp','https://www.ozon.ru/product/ochki-sportivnye-fotohromnye-performance-2026-zashchitnye-ochki-dlya-bega-velosipeda-i-sporta-4752524221/'],
+['С боковой защитой','Для яркого снега и открытой местности.','glasses-glacier.webp','https://www.ozon.ru/product/ochki-uvex-feos-art-9192271-zashchita-ot-solntsa-tsarapin-pyli-himikatov-i-ultrafioleta-uv-400-serye-4191879298/']]},
 {id:'hands',title:'Крем для рук',tag:'для кожи',intro:'Разная плотность для дома, сумки и очень сухой кожи.',variants:[
-['Плотный защитный','Для мороза и сильной сухости.','hands-rich.webp','плотный крем для рук без отдушки'],
-['Барьерный с церамидами','Для регулярной сухости.','hands-pump.webp','крем для рук с церамидами'],
-['Лёгкий на каждый день','Быстро впитывается после мытья рук.','hands-daily.webp','легкий крем для рук']]},
+['Плотный защитный','Для мороза и сильной сухости.','hands-rich.webp','https://www.ozon.ru/product/neutrogena-krem-dlya-ruk-kontsentrirovannyy-bez-otdushek-50-ml-2791698261/'],
+['Барьерный с церамидами','Для регулярной сухости.','hands-pump.webp','https://www.ozon.ru/product/anatomy-uvlazhnyayushchiy-krem-dlya-ruk-s-tseramidami-i-pantenolom-100-ml-876950429/'],
+['Лёгкий на каждый день','Быстро впитывается после мытья рук.','hands-daily.webp','https://www.ozon.ru/product/evo-evo-krem-dlya-ruk-pantenol-aktiv-den-momentalnoe-uvlazhnenie-bez-lipkosti-75-ml-6109414222/']]},
 {id:'lip',title:'Бальзам для губ',tag:'для кожи',intro:'Дневная защита и более плотный уход на ночь.',variants:[
-['Классический стик','Для регулярного использования.','lip-stick.webp','бальзам для губ без отдушки'],
-['Дневной с SPF','Для прогулок в светлое время.','lip-tube.webp','бальзам для губ SPF'],
-['Плотный ночной','Для выраженной сухости.','lip-pot.webp','плотный бальзам для губ на ночь']]},
+['Классический стик','Для регулярного использования.','lip-stick.webp','https://www.ozon.ru/product/botavikos-balzam-dlya-gub-bez-aromata-4-g-391005410/'],
+['Дневной с SPF','Для прогулок в светлое время.','lip-tube.webp','https://www.ozon.ru/product/uvlazhnyayushchiy-balzam-dlya-gub-spf30-5044574954/'],
+['Плотный ночной','Для выраженной сухости.','lip-pot.webp','https://www.ozon.ru/product/laneige-nochnaya-maska-balzam-dlya-gub-lip-sleeping-mask-berry-20-ml-650938334/']]},
 {id:'hair',title:'Термозащита для волос',tag:'для волос',intro:'Формат выбирай по типу волос и привычному способу укладки.',variants:[
-['Лёгкий спрей','Для тонких волос и частой сушки.','hair-spray.webp','легкий спрей термозащита'],
-['Крем-термозащита','Для более плотных и сухих волос.','hair-cream.webp','крем термозащита для волос'],
-['Несмываемый уход','Защита и дополнительное смягчение.','hair-pump.webp','несмываемый уход термозащита']]},
+['Лёгкий спрей','Для тонких волос и частой сушки.','hair-spray.webp','https://www.ozon.ru/product/sprey-dlya-volos-termozashchita-dlya-ukladki-volos-nesmyvaemyy-uhod-s-keratinom-3554957281/'],
+['Крем-термозащита','Для более плотных и сухих волос.','hair-cream.webp','https://www.ozon.ru/product/sprey-krem-dlya-volos-termozashchitnyy-uvlazhnyayushchiy-s-effektom-keratina-professionalnaya-4278984075/'],
+['Несмываемый уход','Защита и дополнительное смягчение.','hair-pump.webp','https://www.ozon.ru/product/sprey-termozashchita-dlya-volos-nesmyvaemyy-uhod-200-ml-658232629/']]},
 {id:'humid',title:'Увлажнитель воздуха',tag:'для дома',intro:'Два понятных сценария — для небольшой комнаты и для спальни.',variants:[
-['Компактный для комнаты','Для небольшого пространства.','humid-compact.webp','компактный увлажнитель воздуха'],
-['Тихий с гигростатом','Для спальни и контроля влажности.','humid-hygro.webp','тихий увлажнитель с гигростатом']]}
+['Компактный для комнаты','Для небольшого пространства.','humid-compact.webp','https://www.ozon.ru/product/foshow-uvlazhnitel-vozduha-xy-slonovaya-kost-6127602804/'],
+['Тихий с гигростатом','Для спальни и контроля влажности.','humid-hygro.webp','https://www.ozon.ru/product/uvlazhnitel-vozduha-ultrazvukovoy-goldstar-gshm-415-3-8-l-verhniy-zaliv-s-podsvetkoy-s-aromakapsuloy-1658931329/']]}
 ];
 const owned=new Set(JSON.parse(localStorage.getItem('winter-shelves-owned')||'[]'));
-const enc=s=>'https://www.ozon.ru/search/?text='+encodeURIComponent(s);
 function render(){
- document.getElementById('shelves').innerHTML=data.map((s,i)=>`<article><div class="shelf-head"><span class="num">0${i+1}</span><div class="copy"><h2>${s.title}</h2><p>${s.intro}</p></div><button class="owned" data-owned="${s.id}" aria-pressed="${owned.has(s.id)}">${owned.has(s.id)?'✓ Подходящий уже есть':'Подходящий уже есть?'}</button></div><div class="display"><div class="track"><div class="variants" style="--count:${s.variants.length}">${s.variants.map(v=>`<div class="variant"><div class="picture"><img src="images/${v[2]}" alt="" loading="lazy"></div><h3>${v[0]}</h3><p>${v[1]}</p><span class="tag">${s.tag}</span><br><a class="more" href="${enc(v[3])}" target="_blank" rel="noopener noreferrer">Посмотреть варианты ↗</a></div>`).join('')}</div></div></div></article>`).join('');
+ document.getElementById('shelves').innerHTML=data.map((s,i)=>`<article><div class="shelf-head"><span class="num">0${i+1}</span><div class="copy"><h2>${s.title}</h2><p>${s.intro}</p></div><button class="owned" data-owned="${s.id}" aria-pressed="${owned.has(s.id)}">${owned.has(s.id)?'✓ Подходящий уже есть':'Подходящий уже есть?'}</button></div><div class="display"><div class="track"><div class="variants" style="--count:${s.variants.length}">${s.variants.map(v=>`<div class="variant"><div class="picture"><img src="images/${v[2]}" alt="" loading="lazy"></div><h3>${v[0]}</h3><p>${v[1]}</p><span class="tag">${s.tag}</span><br><a class="more" href="${v[3]}" target="_blank" rel="noopener noreferrer">Открыть товар ↗</a></div>`).join('')}</div></div></div></article>`).join('');
  document.querySelectorAll('[data-owned]').forEach(b=>b.onclick=()=>{owned.has(b.dataset.owned)?owned.delete(b.dataset.owned):owned.add(b.dataset.owned);localStorage.setItem('winter-shelves-owned',JSON.stringify([...owned]));render()});
 }
 render();
 </script></body></html>
-
