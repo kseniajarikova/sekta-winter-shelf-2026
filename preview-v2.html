@@ -89,14 +89,35 @@ header{position:relative;min-height:130px;display:flex;justify-content:center;al
 .legal{max-width:760px;margin:0}
 @media(max-width:700px){header{min-height:0;display:flex;flex-direction:column;gap:16px;padding:20px 0 24px}.course-cta-header{position:static;width:100%;max-width:360px}.course-end{padding:25px}.course-cta-footer{width:100%}}
 @media print{.course-cta{display:none}}
+
+/* All variants stay on one mobile shelf. */
+@media(max-width:700px){
+ .display{padding:17px 6px 0}
+ .track{overflow:visible;padding-bottom:15px}
+ .variants{grid-template-columns:repeat(var(--count),minmax(0,1fr));min-width:0;gap:5px;align-items:stretch}
+ .variant{display:flex;flex-direction:column;align-items:center;padding:0 2px 10px;min-width:0}
+ .picture{height:clamp(82px,26vw,132px);width:100%}
+ .picture img{width:100%;height:100%;object-fit:contain}
+ .variant h3{font-size:clamp(12px,3.3vw,16px);line-height:1.18;margin:10px 0 5px;overflow-wrap:break-word;hyphens:auto}
+ .variant p{font-size:clamp(10px,2.8vw,13px);line-height:1.3;min-height:0}
+ .tag{display:none}
+ .more{width:100%;min-height:44px;margin-top:auto;padding:7px 2px;font-size:clamp(10px,2.7vw,12px);line-height:1.2;border-radius:12px;overflow-wrap:break-word}
+ .variant p+.tag+.more{margin-top:auto}
+}
+@media(max-width:350px){
+ .variants{grid-template-columns:repeat(var(--count),minmax(0,1fr));gap:3px}
+ .picture{height:82px}.variant{padding:0 1px 8px}
+ .variant h3{font-size:12px}.variant p{font-size:10px}
+ .more{font-size:10px;padding:6px 2px}
+}
 </style>
 </head>
 <body><div class="wrap">
-<header><a class="brand" href="./" aria-label="SOFT POWER — текущая версия"><img src="https://kseniajarikova.github.io/sekta-winter-shelf-2026/images/soft-power-logo.png" alt="#sekta SOFT POWER"></a><a class="course-cta course-cta-header" href="https://sektaschool.ru/online/winterpower">Посмотреть программу</a></header>
-<main><section class="hero"><h1>Что пригодится <em>зимой</em></h1><p>На каждой полке — несколько вариантов одного предмета. Смотри не только на внешний вид, но и на задачу, посадку и то, как вещь впишется в твой привычный уход.</p><p class="context"><strong>Сначала проверь, что уже есть дома.</strong> Затем сравни варианты и выбирай только то, чего действительно не хватает.</p></section>
+<header><a class="brand" href="./preview-v2.html" aria-label="SOFT POWER — полка для зимы"><img src="https://kseniajarikova.github.io/sekta-winter-shelf-2026/images/soft-power-logo.png" alt="#sekta SOFT POWER"></a><a class="course-cta course-cta-header" href="https://sektaschool.ru/online/winterpower">Посмотреть программу</a></header>
+<main><section class="hero"><h1>Что пригодится <em>зимой</em></h1><p>На каждой полке — несколько вариантов одного предмета. Сравни их и выбери тот, который подходит тебе.</p><p class="context"><strong>Сначала проверь, что уже есть дома.</strong> Возможно, ничего покупать не понадобится.</p></section>
 <section class="shelves" id="shelves" aria-label="Полки с зимними предметами"></section>
-<section class="thinking"><h2>Продуманная покупка — без спешки</h2><p>Если привычный уход или вещь подходят для зимних условий, их можно оставить. Если не хватает защиты от холода, солнца или сухого воздуха — выбери вариант, который отвечает именно твоей задаче.</p></section></main>
-<footer><div class="course-end"><h2>Хочешь продолжить?</h2><p>В зимней программе Soft / Super Power можно выбрать свой ритм движения и заботы о себе.</p><a class="course-cta course-cta-footer" href="https://sektaschool.ru/online/winterpower">Купить курс</a></div><p class="legal">Ссылки ведут на первые доступные подходящие товары из выдачи на 13 ноября 2026 года. Наличие и цены могут измениться. Не является рекламой.</p></footer>
+<section class="thinking"><h2>Проверь перед покупкой</h2><p>Шапка закрывает уши? На очках указана защита от ультрафиолета? Увлажнитель подходит для твоей комнаты? Сверь характеристики и выбирай только то, чего не хватает дома.</p></section></main>
+<footer><div class="course-end"><h2>Зима с Soft / Super Power</h2><p>В программе — три недели тренировок. Посмотри уровни Soft и Super и выбери подходящий.</p><a class="course-cta course-cta-footer" href="https://sektaschool.ru/online/winterpower">Купить курс</a></div><p class="legal">Не является рекламой.</p></footer>
 </div>
 <script>
 const data=[
@@ -104,15 +125,15 @@ const data=[
 ['Компактный для сумки','Удобно обновлять на прогулке.','spf-pocket.webp','https://www.ozon.ru/product/vois-spf-50-dlya-litsa-spf-dlya-litsa-stik-solntsezashchitnyy-4069476650/'],
 ['Для чувствительной кожи','Без отдушки и лишних активов.','spf-sensitive.webp','https://www.ozon.ru/product/round-lab-solntsezashchitnyy-krem-stik-50-spf-dlya-litsa-i-tela-spf-v-stike-uvlazhnyayushchiy-birch-2632889056/'],
 ['Для активной прогулки','С устойчивостью к влаге и поту.','spf-sport.webp','https://www.ozon.ru/product/librederm-solntsezashchitnyy-stik-dlya-litsa-i-tela-spf-50-bronziada-sport-4-8g-1328383647/']]},
-{id:'hat',title:'Шапка, закрывающая уши',tag:'для улицы',intro:'Три сценария посадки — выбирай по погоде и привычному стилю.',variants:[
+{id:'hat',title:'Шапка, закрывающая уши',tag:'для улицы',intro:'Бини, ушанка и капор по-разному закрывают уши и шею.',variants:[
 ['Глубокая бини','Для города и обычных прогулок.','hat-beanie.webp','https://www.ozon.ru/product/shapka-bini-zimnyaya-1-sht-3019968396/'],
 ['С утеплёнными ушами','Для ветра и долгого времени на улице.','hat-earflap.webp','https://www.ozon.ru/product/shapka-ushanka-1-sht-3113337097/'],
 ['Мягкий капор','Закрывает голову, уши и шею.','hat-hood.webp','https://www.ozon.ru/product/balaklava-zimnyaya-2895083150/']]},
-{id:'glasses',title:'Солнцезащитные очки',tag:'для улицы',intro:'Разная степень закрытости для города, движения и яркого снега.',variants:[
+{id:'glasses',title:'Солнцезащитные очки',tag:'для улицы',intro:'Варианты для города, движения и яркого снега.',variants:[
 ['Городская широкая оправа','Крупные линзы на каждый день.','glasses-city.webp','https://www.ozon.ru/product/shirokie-solntsezashchitnye-ochki-s-polyarizatsiey-i-uv-filtrom-v-komplekte-chehol-tryapochka-2168505062/'],
 ['Спортивная посадка','Плотнее сидит во время движения.','glasses-sport.webp','https://www.ozon.ru/product/ochki-sportivnye-fotohromnye-performance-2026-zashchitnye-ochki-dlya-bega-velosipeda-i-sporta-4752524221/'],
 ['С боковой защитой','Для яркого снега и открытой местности.','glasses-glacier.webp','https://www.ozon.ru/product/ochki-uvex-feos-art-9192271-zashchita-ot-solntsa-tsarapin-pyli-himikatov-i-ultrafioleta-uv-400-serye-4191879298/']]},
-{id:'hands',title:'Крем для рук',tag:'для кожи',intro:'Разная плотность для дома, сумки и очень сухой кожи.',variants:[
+{id:'hands',title:'Крем для рук',tag:'для кожи',intro:'Три текстуры для разной степени сухости рук.',variants:[
 ['Плотный защитный','Для мороза и сильной сухости.','hands-rich.webp','https://www.ozon.ru/product/neutrogena-krem-dlya-ruk-kontsentrirovannyy-bez-otdushek-50-ml-2791698261/'],
 ['Барьерный с церамидами','Для регулярной сухости.','hands-pump.webp','https://www.ozon.ru/product/anatomy-uvlazhnyayushchiy-krem-dlya-ruk-s-tseramidami-i-pantenolom-100-ml-876950429/'],
 ['Лёгкий на каждый день','Быстро впитывается после мытья рук.','hands-daily.webp','https://www.ozon.ru/product/evo-evo-krem-dlya-ruk-pantenol-aktiv-den-momentalnoe-uvlazhnenie-bez-lipkosti-75-ml-6109414222/']]},
@@ -124,7 +145,7 @@ const data=[
 ['Лёгкий спрей','Для тонких волос и частой сушки.','hair-spray.webp','https://www.ozon.ru/product/sprey-dlya-volos-termozashchita-dlya-ukladki-volos-nesmyvaemyy-uhod-s-keratinom-3554957281/'],
 ['Крем-термозащита','Для более плотных и сухих волос.','hair-cream.webp','https://www.ozon.ru/product/sprey-krem-dlya-volos-termozashchitnyy-uvlazhnyayushchiy-s-effektom-keratina-professionalnaya-4278984075/'],
 ['Несмываемый уход','Защита и дополнительное смягчение.','hair-pump.webp','https://www.ozon.ru/product/sprey-termozashchita-dlya-volos-nesmyvaemyy-uhod-200-ml-658232629/']]},
-{id:'humid',title:'Увлажнитель воздуха',tag:'для дома',intro:'Два понятных сценария — для небольшой комнаты и для спальни.',variants:[
+{id:'humid',title:'Увлажнитель воздуха',tag:'для дома',intro:'Для небольшой комнаты и спальни.',variants:[
 ['Компактный для комнаты','Для небольшого пространства.','humid-compact.webp','https://www.ozon.ru/product/foshow-uvlazhnitel-vozduha-xy-slonovaya-kost-6127602804/'],
 ['Тихий с гигростатом','Для спальни и контроля влажности.','humid-hygro.webp','https://www.ozon.ru/product/uvlazhnitel-vozduha-ultrazvukovoy-goldstar-gshm-415-3-8-l-verhniy-zaliv-s-podsvetkoy-s-aromakapsuloy-1658931329/']]}
 ];
